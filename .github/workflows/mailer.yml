@@ -1,0 +1,27 @@
+name: Velur Daily Task Mailer
+on:
+  schedule:
+    - cron: "0 4 * * 1-5"   # 04:00 UTC = 08:00 Dubai, Mon–Fri
+  workflow_dispatch: {}
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install certifi
+      - run: python velur_task_mailer.py
+        env:
+          VELUR_SMTP_HOST: smtp.hostinger.com
+          VELUR_SMTP_PORT: "465"
+          VELUR_SMTP_USER: a.ismail@velurfragrance.com
+          VELUR_SMTP_PASS: ${{ secrets.VELUR_SMTP_PASS }}
+          VELUR_SENDER: a.ismail@velurfragrance.com
+          VELUR_SENDER_NAME: Velur
+          VELUR_SPREADSHEET_ID: 1biIY7YBiPQN69CgYWeFdnp9_0lVgN-y9WJweI_W6NVs
+          VELUR_WORKSHEET_GID: "1717272889"
+          VELUR_ALL_TEAM_ADDR: a.ismail@velurfragrance.com
+          VELUR_TZ: Asia/Dubai
+          DRY_RUN: "1"
