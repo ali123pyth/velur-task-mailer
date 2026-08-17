@@ -24,4 +24,4 @@ jobs:
           VELUR_WORKSHEET_GID: "1717272889"
           VELUR_ALL_TEAM_ADDR: a.ismail@velurfragrance.com
           VELUR_TZ: Asia/Dubai
-          DRY_RUN: "1"
+          DRY_RUN: "0"
